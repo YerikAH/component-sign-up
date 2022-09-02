@@ -151,6 +151,31 @@ watch(validationPassword, () => {
 watch(countPass, () => {
   typePass.value = "password";
 });
+
+function allClear() {
+  firstName.value = "";
+  lastName.value = "";
+  emailAddres.value = "";
+  password.value = "";
+  validationFirstName.value = true;
+  messageFirstName.value = "First Name cannot be empty";
+  validationPassword.value = true;
+  messagePassword.value = "Password cannot be empty";
+  validationLastName.value = true;
+  messageLastName.value = "Last Name cannot be empty";
+  validationEmailAddres.value = true;
+  messageEmailAddres.value = "Email cannot be empty";
+}
+function handleSubmit() {
+  if (
+    firstName.value == "First Name" ||
+    lastName.value == "Last Name" ||
+    emailAddres.value == "Email Address" ||
+    password.value == "Password"
+  ) {
+    allClear();
+  }
+}
 </script>
 
 <template>
@@ -213,7 +238,7 @@ watch(countPass, () => {
             <div class="container-inputs">
               <input
                 name="email-addres"
-                type="text"
+                type="email"
                 class="content_form_input"
                 @blur="handleBlur"
                 @click="handleClick"
@@ -248,7 +273,7 @@ watch(countPass, () => {
             <span v-show="validationPassword" class="error-show">{{
               messagePassword
             }}</span>
-            <input type="submit" value="CLAIM YOUR FREE TRIAL" />
+            <input type="submit" value="CLAIM YOUR FREE TRIAL" @click="handleSubmit" />
           </form>
           <p class="child_form_content_text">
             By clicking the button, you are agreeing to our
